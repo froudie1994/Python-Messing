@@ -6,6 +6,60 @@ specialattack = 5
 nopointsavailable = 15
 gamelength = 2
 
+def changepoints():
+    global attackpower
+    global defensepower
+    global specialattack
+    global nopointsavailable
+    print ('Which power would you like to change?')
+    print ('1. Attack')
+    print ('2. Defense')
+    print ('3. Special Attack')
+    changepower = input()
+    if changepower == '1':
+        print ('What would you like your new attack power to be?')
+        attackpower = int(input())
+        print ('Thanks, did you want to change any other powers?')
+        print ('1. Yes')
+        print ('2. No')
+        attackchange = input()
+        if attackchange == '1':
+            changepoints()
+        elif attackchange == '2':
+            if attackpower + defensepower + specialattack <= 15:
+                gamemenu()
+            else:
+                print ('Sorry, your total game points need to be less than ' + str(nopointsavailable) + '. Please amend your powers.')
+                time.sleep(1)
+                changepoints()
+    elif changepower == '2':
+        print ('What would you like your new defense power to be?')
+        defensepower = int(input())
+        print ('Thanks, did you want to change any other powers?')
+        print ('1. Yes')
+        print ('2. No')
+        attackchange = input()
+        if attackchange == '1':
+            changepoints()
+        elif attackchange == '2':
+            if attackpower + defensepower + specialattack <= 15:
+                gamemenu()
+            else:
+                print ('Sorry, your total game points need to be less than ' + str(nopointsavailable) + ', and your current points are ' + str(attackpower + defensepower + specialattack) + '. Please amend your powers.')
+                changepoints()
+    elif changepower == '3':
+        print ('What would you like your new special attack to be?')
+        specialattack = int(input())
+        print ('Thanks, did you want to change any other powers?')
+        print ('1. Yes')
+        print ('2. No')
+        attackchange = input()
+        if attackchange == '1':
+            changepoints()
+        elif attackchange == '2':
+            gamemenu()
+    
+
 def gamemenu():
     global name
     global attackpower
@@ -18,10 +72,14 @@ def gamemenu():
     print ("Defense Power:" + str(defensepower))
     print ("Special Attack:" + str(specialattack))
     print (' ')
-    print ("Would you like to change these? Don't forget, you can only use" + str(nopointsavailable) + " points in total.")
+    print ("Would you like to change these? Don't forget, you can only use " + str(nopointsavailable) + " points in total.")
     print ('1. Yes')
     print ('2. No')
-    changepoints = input()
+    changepointsind = input()
+    if changepointsind == '1':
+        changepoints()
+    elif changepointsind == '2':
+        game()
 
 def options():
     global name
